@@ -1,0 +1,213 @@
+golden_queries:
+  - id: GQ001
+    business_question: "What are the overall executive KPIs for the Olist warehouse?"
+    expected_sql: |
+      SELECT
+          total_revenue,
+          product_revenue,
+          freight_revenue,
+          total_orders,
+          average_order_value,
+          late_delivery_rate,
+          average_review_score,
+          average_delivery_days,
+          freight_ratio
+      FROM vw_sales_overview;
+    expected_tables:
+      - vw_sales_overview
+    expected_metrics:
+      - total revenue
+      - product revenue
+      - freight revenue
+      - total orders
+      - average order value
+      - late delivery rate
+      - average review score
+      - average delivery days
+      - freight ratio
+    difficulty: easy
+    evaluation_notes: "Tests whether the agent uses the dashboard-ready KPI view and returns the approved executive metrics without unnecessary joins."
+
+  - id: GQ002
+    business_question: "How did total revenue, orders, and average order value trend by purchase month?"
+    expected_sql: |
+      SELECT
+          month_start_date,
+          year,
+          month,
+          total_revenue,
+          total_orders,
+          average_order_value
+      FROM vw_monthly_revenue
+      ORDER BY month_start_date;
+    expected_tables:
+      - vw_monthly_revenue
+    expected_metrics:
+      - total revenue
+      - total orders
+      - average order value
+    difficulty: easy
+    evaluation_notes: "Tests default use of purchase date for time-based revenue analysis and correct chronological ordering."
+
+  - id: GQ003
+    business_question: "What are the top 10 product categories by total revenue?"
+    expected_sql: |
+      SELECT
+          product_category_name_english,
+          total_revenue,
+          product_revenue,
+          freight_revenue,
+          total_orders,
+          average_order_value,
+          average_review_score
+      FROM vw_product_category_performance
+      ORDER BY total_revenue DESC
+      LIMIT 10;
+    expected_tables:
+      - vw_product_category_performance
+    expected_metrics:
+      - total revenue
+      - product revenue
+      - freight revenue
+      - total orders
+      - average order value
+      - average review score
+    difficulty: medium
+    evaluation_notes: "Tests product category ranking, result limiting, and use of translated product category names."
+
+  - id: GQ004
+    business_question: "Which sellers generated the most revenue, and how did they perform on delivery and reviews?"
+    expected_sql: |
+      SELECT
+          seller_id,
+          seller_city,
+          seller_state,
+          total_revenue,
+          total_orders,
+          average_order_value,
+          late_delivery_rate,
+          average_delivery_days,
+          average_review_score
+      FROM vw_seller_performance
+      ORDER BY total_revenue DESC
+      LIMIT 10;
+    expected_tables:
+      - vw_seller_performance
+    expected_metrics:
+      - total revenue
+      - total orders
+      - average order value
+      - late delivery rate
+      - average delivery days
+      - average review score
+    difficulty: medium
+    evaluation_notes: "Tests seller-level aggregation and whether the answer combines revenue, delivery quality, and satisfaction metrics."
+
+  - id: GQ005
+    business_question: "Which purchase months had the highest late delivery rates?"
+    expected_sql: |
+      SELECT
+          month_start_date,
+          year,
+          month,
+          order_status,
+          total_orders,
+          late_delivery_count,
+          late_delivery_rate,
+          average_delivery_days,
+          average_delay_days
+      FROM vw_delivery_performance
+      WHERE order_status = 'delivered'
+      ORDER BY late_delivery_rate DESC, total_orders DESC
+      LIMIT 10;
+    expected_tables:
+      - vw_delivery_performance
+    expected_metrics:
+      - total orders
+      - late delivery rate
+      - average delivery days
+    difficulty: medium
+    evaluation_notes: "Tests late delivery analysis, filtering to delivered orders, and correct use of delay and delivery metrics."
+
+  - id: GQ006
+    business_question: "How do revenue and delivery performance vary by review score?"
+    expected_sql: |
+      SELECT
+          review_score,
+          total_orders,
+          total_revenue,
+          average_order_value,
+          average_delivery_days,
+          average_delay_days,
+          late_delivery_rate,
+          average_review_response_days
+      FROM vw_customer_satisfaction
+      ORDER BY review_score;
+    expected_tables:
+      - vw_customer_satisfaction
+    expected_metrics:
+      - total revenue
+      - total orders
+      - average order value
+      - late delivery rate
+      - average delivery days
+    difficulty: medium
+    evaluation_notes: "Tests customer satisfaction analysis and whether review scores are treated as a dimension for explaining revenue and delivery outcomes."
+
+  - id: GQ007
+    business_question: "Which payment methods account for the most revenue and orders?"
+    expected_sql: |
+      SELECT
+          primary_payment_type,
+          total_orders,
+          total_revenue,
+          product_revenue,
+          freight_revenue,
+          average_order_value,
+          average_review_score,
+          late_delivery_rate
+      FROM vw_payment_analysis
+      ORDER BY total_revenue DESC;
+    expected_tables:
+      - vw_payment_analysis
+    expected_metrics:
+      - total revenue
+      - product revenue
+      - freight revenue
+      - total orders
+      - average order value
+      - average review score
+      - late delivery rate
+    difficulty: easy
+    evaluation_notes: "Tests payment-method aggregation, including the missing-payment placeholder category when present."
+
+  - id: GQ008
+    business_question: "Which customer states generate the most total revenue?"
+    expected_sql: |
+      SELECT
+          customer_state,
+          SUM(total_revenue) AS total_revenue,
+          SUM(product_revenue) AS product_revenue,
+          SUM(freight_revenue) AS freight_revenue,
+          SUM(total_orders) AS total_orders,
+          SUM(total_revenue) / NULLIF(SUM(total_orders), 0) AS average_order_value,
+          AVG(average_review_score) AS average_review_score,
+          AVG(late_delivery_rate) AS late_delivery_rate,
+          AVG(average_delivery_days) AS average_delivery_days
+      FROM vw_geographic_revenue
+      GROUP BY customer_state
+      ORDER BY total_revenue DESC
+      LIMIT 10;
+    expected_tables:
+      - vw_geographic_revenue
+    expected_metrics:
+      - total revenue
+      - product revenue
+      - freight revenue
+      - total orders
+      - average order value
+      - late delivery rate
+      - average review score
+      - average delivery days
+    difficulty: hard
+    evaluation_notes: "Tests geographic rollup by customer state and whether the agent can aggregate from a city/zip-level analytical view."

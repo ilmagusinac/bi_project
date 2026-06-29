@@ -1,0 +1,7 @@
+pandas
+numpy
+psycopg[binary]
+python-dotenv
+SQLAlchemy
+pyyaml
+mcp

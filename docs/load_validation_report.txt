@@ -1,0 +1,58 @@
+Olist Warehouse Load Validation Report
+
+================================================================================
+Row Count Validation
+================================================================================
+[PASS] dim_date: expected 755, actual 755
+[PASS] dim_geolocation: expected 19,015, actual 19,015
+[PASS] dim_customer: expected 99,441, actual 99,441
+[PASS] dim_product: expected 32,951, actual 32,951
+[PASS] dim_seller: expected 3,095, actual 3,095
+[PASS] dim_payment_summary: expected 99,441, actual 99,441
+[PASS] dim_review: expected 98,673, actual 98,673
+[PASS] fact_order_items: expected 112,650, actual 112,650
+
+================================================================================
+Business Total Validation
+================================================================================
+[PASS] product_revenue: expected 13,591,643.70, actual 13,591,643.70, difference 0.00
+[PASS] freight_value: expected 2,251,909.54, actual 2,251,909.54, difference 0.00
+[PASS] total_revenue: expected 15,843,553.24, actual 15,843,553.24, difference 0.00
+
+================================================================================
+Required Foreign Key Validation
+================================================================================
+[PASS] fact_order_items.customer_sk null count: 0
+[PASS] fact_order_items.product_sk null count: 0
+[PASS] fact_order_items.seller_sk null count: 0
+[PASS] fact_order_items.payment_summary_sk null count: 0
+[PASS] fact_order_items.purchase_date_sk null count: 0
+[PASS] fact_order_items.estimated_delivery_date_sk null count: 0
+
+================================================================================
+Nullable Relationship Field Validation
+================================================================================
+[PASS] fact_order_items.review_sk nullable null count: 942
+[PASS] fact_order_items.customer_geolocation_sk nullable null count: 510
+[PASS] fact_order_items.seller_geolocation_sk nullable null count: 3,279
+[PASS] fact_order_items.approved_date_sk nullable null count: 15
+[PASS] fact_order_items.delivered_carrier_date_sk nullable null count: 1,194
+[PASS] fact_order_items.delivered_customer_date_sk nullable null count: 2,454
+
+================================================================================
+Delivery Metric Validation
+================================================================================
+[PASS] late delivery count: 8,715
+[PASS] late delivery rate: 0.0774
+[PASS] average delivery_days: 12.41
+[PASS] average delay_days: -12.03
+
+================================================================================
+Review Metric Validation
+================================================================================
+[PASS] average review score: 4.09
+
+================================================================================
+Overall Result
+================================================================================
+[PASS] validation completed with 0 failure(s)

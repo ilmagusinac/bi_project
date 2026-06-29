@@ -1,0 +1,6 @@
+.env
+venv/
+
+# Dataset files
+data/raw/
+data/processed/
