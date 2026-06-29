@@ -28,7 +28,7 @@ BLOCKED_SQL_KEYWORDS = {
     "EXECUTE",
 }
 
-WAREHOUSE_TABLES = {
+PHYSICAL_WAREHOUSE_TABLES = {
     "dim_date",
     "dim_customer",
     "dim_product",
@@ -36,8 +36,25 @@ WAREHOUSE_TABLES = {
     "dim_payment_summary",
     "dim_review",
     "dim_geolocation",
+    "dim_external_intelligence",
     "fact_order_items",
 }
+
+APPROVED_ANALYTICAL_VIEWS = {
+    "vw_sales_overview",
+    "vw_monthly_revenue",
+    "vw_product_category_performance",
+    "vw_seller_performance",
+    "vw_delivery_performance",
+    "vw_customer_satisfaction",
+    "vw_payment_analysis",
+    "vw_geographic_revenue",
+    "vw_product_category_intelligence",
+    "vw_geographic_intelligence",
+    "vw_delivery_intelligence",
+}
+
+SUPPORTED_RELATIONS = PHYSICAL_WAREHOUSE_TABLES | APPROVED_ANALYTICAL_VIEWS
 
 
 def _required_env(name: str) -> str:
@@ -80,13 +97,23 @@ def fetch_one(query: str, params: tuple[Any, ...] | None = None) -> dict[str, An
 def list_tables() -> list[dict[str, Any]]:
     return fetch_all(
         """
-        SELECT table_schema, table_name, table_type
-        FROM information_schema.tables
-        WHERE table_schema = 'public'
-          AND table_name = ANY(%s)
+        SELECT relation_schema, relation_name AS table_name, relation_type AS table_type
+        FROM (
+            SELECT table_schema AS relation_schema, table_name AS relation_name, table_type AS relation_type
+            FROM information_schema.tables
+            WHERE table_schema = 'public'
+              AND table_name = ANY(%s)
+
+            UNION
+
+            SELECT table_schema AS relation_schema, table_name AS relation_name, 'VIEW' AS relation_type
+            FROM information_schema.views
+            WHERE table_schema = 'public'
+              AND table_name = ANY(%s)
+        ) supported_relations
         ORDER BY table_name;
         """,
-        (sorted(WAREHOUSE_TABLES),),
+        (sorted(SUPPORTED_RELATIONS), sorted(SUPPORTED_RELATIONS)),
     )
 
 
@@ -138,8 +165,10 @@ def describe_table(table_name: str) -> dict[str, Any]:
 
 
 def get_schema() -> dict[str, Any]:
+    relations = list_tables()
     return {
-        "tables": list_tables(),
+        "tables": relations,
+        "relations": relations,
         "foreign_keys": get_foreign_keys(),
         "columns": fetch_all(
             """
@@ -154,7 +183,7 @@ def get_schema() -> dict[str, Any]:
               AND table_name = ANY(%s)
             ORDER BY table_name, ordinal_position;
             """,
-            (sorted(WAREHOUSE_TABLES),),
+            (sorted(SUPPORTED_RELATIONS),),
         ),
     }
 
@@ -180,7 +209,7 @@ def get_foreign_keys() -> list[dict[str, Any]]:
           AND tc.table_name = ANY(%s)
         ORDER BY tc.table_name, kcu.column_name;
         """,
-        (sorted(WAREHOUSE_TABLES),),
+        (sorted(PHYSICAL_WAREHOUSE_TABLES),),
     )
 
 
@@ -223,9 +252,11 @@ def build_safe_select(query: str) -> str:
 
 
 def _validate_known_table(table_name: str) -> None:
-    if table_name not in WAREHOUSE_TABLES:
-        valid_tables = ", ".join(sorted(WAREHOUSE_TABLES))
-        raise ValueError(f"Unknown or unsupported table '{table_name}'. Valid tables: {valid_tables}")
+    if table_name not in SUPPORTED_RELATIONS:
+        valid_relations = ", ".join(sorted(SUPPORTED_RELATIONS))
+        raise ValueError(
+            f"Unknown or unsupported relation '{table_name}'. Valid relations: {valid_relations}"
+        )
 
 
 def _first_keyword(query: str) -> str | None:

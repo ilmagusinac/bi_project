@@ -1,8 +1,12 @@
-.env
+# Python environment
+.venv/
 venv/
+__pycache__/
+*.pyc
 
-# Dataset files
-data/raw/
-data/processed/
-
+# Secrets and local agent config
+.env
 .codex/
+
+# Raw downloaded Kaggle data
+data/raw/

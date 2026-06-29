@@ -35,8 +35,8 @@ METRICS: dict[str, dict[str, str]] = {
         "grain": "Order",
     },
     "average_order_value": {
-        "formula": "SUM(fact_order_items.product_revenue) / COUNT(DISTINCT fact_order_items.order_id)",
-        "description": "Average product revenue per distinct order.",
+        "formula": "SUM(fact_order_items.total_item_value) / COUNT(DISTINCT fact_order_items.order_id)",
+        "description": "Average total revenue, including product revenue and freight, per distinct order.",
         "grain": "Order",
     },
     "late_delivery_rate": {
@@ -64,19 +64,19 @@ METRICS: dict[str, dict[str, str]] = {
 
 @mcp.tool()
 def list_tables() -> list[dict[str, Any]]:
-    """List supported BI warehouse tables in the public schema."""
+    """List supported BI warehouse tables and approved analytical views."""
     return _json_ready(database.list_tables())
 
 
 @mcp.tool()
 def describe_table(table_name: str) -> dict[str, Any]:
-    """Describe columns and constraints for one supported warehouse table."""
+    """Describe columns and constraints for one supported table or view."""
     return _json_ready(database.describe_table(table_name))
 
 
 @mcp.tool()
 def get_schema() -> dict[str, Any]:
-    """Return supported warehouse tables, columns, and foreign keys."""
+    """Return supported warehouse relations, columns, and foreign keys."""
     return _json_ready(database.get_schema())
 
 

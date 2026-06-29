@@ -8,11 +8,15 @@ the result.
 
 Use the `olist-postgres` MCP server for schema inspection, metric definitions,
 foreign key lookup, and read-only SQL execution. Do not assume schema details
-when they can be verified through the MCP server.
+when they can be verified through the MCP server. Superset MCP is used
+separately for Superset chart and dashboard interaction; PostgreSQL MCP remains
+read-only and is only for warehouse analysis.
 
 ## Database Scope
 
-Use only the approved warehouse schema tables:
+Use only the approved warehouse schema tables and analytical views.
+
+Approved physical warehouse tables:
 
 - `fact_order_items`
 - `dim_date`
@@ -22,6 +26,31 @@ Use only the approved warehouse schema tables:
 - `dim_payment_summary`
 - `dim_review`
 - `dim_geolocation`
+- `dim_external_intelligence`
+
+Approved dashboard-ready analytical views:
+
+- `vw_sales_overview`
+- `vw_monthly_revenue`
+- `vw_product_category_performance`
+- `vw_seller_performance`
+- `vw_delivery_performance`
+- `vw_customer_satisfaction`
+- `vw_payment_analysis`
+- `vw_geographic_revenue`
+
+Approved external intelligence views:
+
+- `vw_product_category_intelligence`
+- `vw_geographic_intelligence`
+- `vw_delivery_intelligence`
+
+Prefer dashboard-ready analytical views for common BI questions when the view
+already contains the requested metric grain. Use the physical warehouse tables
+when a question needs custom joins, dimensions, or metric logic that is not
+available in a view. Use the external intelligence views when the question asks
+for market context, recommendations, risk interpretation, or source-backed
+business intelligence beyond historical Olist warehouse metrics.
 
 Do not query raw source CSV staging tables, legacy Online Retail reference
 tables, Supabase metadata tables, PostgreSQL catalog tables, or any table not

@@ -211,3 +211,29 @@ golden_queries:
       - average delivery days
     difficulty: hard
     evaluation_notes: "Tests geographic rollup by customer state and whether the agent can aggregate from a city/zip-level analytical view."
+
+  - id: GQ009
+    business_question: "Which product categories combine high revenue with external market intelligence and business recommendations?"
+    expected_sql: |
+      SELECT
+          product_category_name_english,
+          total_revenue,
+          total_orders,
+          late_delivery_rate,
+          average_review_score,
+          business_recommendation,
+          risk_or_challenge
+      FROM vw_product_category_intelligence
+      ORDER BY total_revenue DESC
+      LIMIT 5;
+    expected_tables:
+      - vw_product_category_intelligence
+    expected_metrics:
+      - total revenue
+      - total orders
+      - late delivery rate
+      - average review score
+      - business recommendation
+      - risk or challenge
+    difficulty: hard
+    evaluation_notes: "Tests the advanced MCP layer by validating that external Brave Search intelligence is joined back to internal product category performance metrics."

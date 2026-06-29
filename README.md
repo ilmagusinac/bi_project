@@ -1,12 +1,13 @@
 # Olist BI Agent
 
-AI-powered Business Intelligence project for the Olist Brazilian E-Commerce dataset. The project builds a PostgreSQL analytical warehouse, exposes it safely through a PostgreSQL MCP server for Codex CLI, enriches warehouse metrics with Brave Search MCP external intelligence, and presents the results in Apache Superset dashboards.
+AI-powered Business Intelligence project for the Olist Brazilian E-Commerce dataset. The project builds a PostgreSQL analytical warehouse, exposes it safely through a PostgreSQL MCP server for Codex CLI, enriches warehouse metrics with Brave Search MCP external intelligence, and uses Superset MCP for controlled chart and dashboard interaction in Apache Superset.
 
 ## Technology Stack
 
 - Codex CLI
 - PostgreSQL MCP server
 - Brave Search MCP server
+- Superset MCP server
 - Supabase PostgreSQL
 - Python ETL with `pandas` and `psycopg`
 - Apache Superset
@@ -35,9 +36,13 @@ Warehouse target queries
     -> data/external/external_intelligence.json
     -> dim_external_intelligence
     -> external intelligence Superset views
+
+Codex CLI BI agent
+    -> Superset MCP server
+    -> Apache Superset charts and dashboards
 ```
 
-The core warehouse stores historical Olist business metrics. The MCP layer lets the agent inspect schema, explain metrics, and run read-only SQL. The Brave Search layer adds current market, logistics, and customer experience context.
+The core warehouse stores historical Olist business metrics. PostgreSQL MCP lets the agent inspect schema, explain metrics, and run safe read-only warehouse queries. Brave Search MCP adds current market, logistics, and customer experience context. Superset MCP lets the agent inspect Superset assets and create or place charts on dashboards when explicitly requested.
 
 ## Folder Structure
 
@@ -210,9 +215,9 @@ The project includes three main Apache Superset dashboards:
 
 The external intelligence views can be added to Superset as tables or detail panels to show market summaries, recommendations, risks, and source URLs beside internal BI metrics.
 
-## Advanced MCP Integration
+## MCP Integrations
 
-The project uses two MCP integrations:
+The project uses three MCP integrations:
 
 ### PostgreSQL MCP
 
@@ -238,10 +243,29 @@ Superset-ready views expose the results:
 - `vw_geographic_intelligence`
 - `vw_delivery_intelligence`
 
+### Superset MCP
+
+The Superset MCP server lets Codex CLI interact with Apache Superset dashboards, datasets, and charts through controlled tools. It is used for Superset asset inspection and, when explicitly requested, chart/dashboard operations such as creating a chart and adding it to a dashboard.
+
+Successful Superset MCP test:
+
+- Created chart ID `128`: `Top 5 Product Categories - Revenue and Risk Signals`
+- Dataset: `vw_product_category_performance` / dataset ID `24`
+- Dashboard: `Product & Seller Performance` / dashboard ID `11`
+- Fields: `product_category_name_english`, `total_revenue`, `total_orders`, `late_delivery_rate`, `average_review_score`, `freight_ratio`
+- Configuration: table chart, top 5 rows, ordered by `total_revenue` descending
+
+## Demo Flow
+
+1. A user asks the Codex CLI BI agent a business question, such as which product categories generate the most revenue and carry delivery or satisfaction risk.
+2. The agent uses PostgreSQL MCP to inspect approved warehouse views, generate PostgreSQL-compatible SQL, and fetch read-only data from the warehouse.
+3. When the user asks for a visual result, the agent uses Superset MCP to create a Superset chart from the relevant dataset.
+4. Superset displays the visual result on the target dashboard for review and presentation.
+
 ## Security Notes
 
 - `.env` is local only and must not be committed.
-- Database passwords, Supabase credentials, Brave API keys, and tokens must not be committed.
+- Database passwords, Supabase credentials, Superset credentials, Brave API keys, and tokens must not be committed.
 - `.env.example` contains placeholders only.
 - MCP SQL access is read-only for agent queries.
 - External intelligence stores source URLs and summaries, not API keys.
