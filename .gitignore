@@ -5,4 +5,4 @@ venv/
 data/raw/
 data/processed/
 
-.codex
+.codex/
