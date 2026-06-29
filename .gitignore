@@ -4,3 +4,5 @@ venv/
 # Dataset files
 data/raw/
 data/processed/
+
+.codex
