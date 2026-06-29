@@ -1,105 +1,256 @@
-# Online Retail Data Warehouse ETL
+# Olist BI Agent
 
-This project implements a Star Schema data warehouse using PostgreSQL and a Python-based ETL process for the "Online Retail" dataset.
+AI-powered Business Intelligence project for the Olist Brazilian E-Commerce dataset. The project builds a PostgreSQL analytical warehouse, exposes it safely through a PostgreSQL MCP server for Codex CLI, enriches warehouse metrics with Brave Search MCP external intelligence, and presents the results in Apache Superset dashboards.
 
-## Project Structure
+## Technology Stack
 
-- `OnlineRetail.csv`: Source dataset containing transactions.
-- `etl_process.py`: Main ETL script (Extract, Transform, Load).
-- `.env`: Database connection credentials.
-- `requirements.txt`: Python dependencies.
+- Codex CLI
+- PostgreSQL MCP server
+- Brave Search MCP server
+- Supabase PostgreSQL
+- Python ETL with `pandas` and `psycopg`
+- Apache Superset
 
-## Star Schema Design
+## Dataset
 
-The data is organized into a Star Schema for optimized analytical querying:
+The project uses the **Olist Brazilian E-Commerce Public Dataset**.
 
-- **Fact Table**: `fact_sales` (measures: quantity, unit_price, total_amount)
-- **Dimension Tables**:
-  - `dim_product`: Product descriptions and stock codes.
-  - `dim_customer`: Customer IDs and geographical information.
-  - `dim_date`: Granular time dimension (year, month, day, quarter, hour, day of week).
+Raw source files include customers, orders, order items, payments, reviews, products, sellers, geolocation, and product category translations. The legacy Online Retail dataset is not used as the final BI dataset.
 
-## Prerequisites
+## Architecture
 
-- Python 3.10+
-- PostgreSQL database
-- Virtual environment (recommended)
+```text
+Olist CSV files
+    -> Python pandas/psycopg ETL
+    -> Supabase PostgreSQL warehouse
+    -> Analytical SQL views
+    -> Apache Superset dashboards
 
-## Setup Instructions
+Supabase PostgreSQL warehouse
+    -> PostgreSQL MCP server
+    -> Codex CLI BI agent
 
-1. **Install Dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-2. **Configure Environment**:
-   Create a `.env` file in the root directory with your PostgreSQL credentials:
-   ```env
-   POSTGRES_HOST=your_host
-   POSTGRES_PORT=5432
-   POSTGRES_DATABASE=online-retail-dw
-   POSTGRES_USER=your_user
-   POSTGRES_PASSWORD=your_password
-   ```
-
-3. **Run ETL Process**:
-   Execute the Python script to clean the data and populate the database:
-   ```bash
-   python etl_process.py
-   ```
-
-## Built with Gemini CLI
-
-This project was developed using the Gemini CLI with the PostgreSQL extension.
-
-### PostgreSQL Extension Configuration
-
-The Gemini CLI uses the following environment variables to interact with the database. These should be set in your terminal session or stored in a `.env` file (the CLI automatically detects local `.env` files).
-
-```bash
-export POSTGRES_HOST="your-db-host"
-export POSTGRES_PORT="5432"
-export POSTGRES_DATABASE="online-retail-dw"
-export POSTGRES_USER="your-user"
-export POSTGRES_PASSWORD="your-password"
+Warehouse target queries
+    -> Brave Search MCP
+    -> data/external/external_intelligence.json
+    -> dim_external_intelligence
+    -> external intelligence Superset views
 ```
 
-### Example Development Prompts
+The core warehouse stores historical Olist business metrics. The MCP layer lets the agent inspect schema, explain metrics, and run read-only SQL. The Brave Search layer adds current market, logistics, and customer experience context.
 
-Here is the sequence of prompts used to generate this project:
+## Folder Structure
 
-#### 1. Data Analysis & Schema Generation
-- `analyze first 5 lines of the @OnlineRetail.csv file and create me a start schema for the data warehouse. create dim_product, dim_date, dim_customer and fact_sales tables.`
-- `implement this schema using postgres extension`
-- `generate a python ETL script named etl_process.py that uses pandas and psycopg2 to load OnlineRetail.csv into the postgres tables. handle deduplication, null customer IDs, and use surrogate keys for the fact table. implement batching and idempotency with ON CONFLICT.`
+```text
+agent_eval/                  Golden query evaluator and test cases
+data/raw/                    Raw Olist CSV files
+data/processed/              Processed ETL outputs
+data/external/               Brave Search external intelligence JSON
+docs/                        Reports, summaries, prompts, and documentation
+etl/                         Python ETL, validation, and external intelligence loaders
+mcp_server/                  PostgreSQL MCP server tools and prompts
+supabase/migrations/         PostgreSQL schema, indexes, views, and intelligence layer
+superset/dashboard_sql/      Dashboard SQL assets
+superset/exported_dashboards/ Superset dashboard export location
+legacy_professor_reference/  Old reference material, not the final dataset
+```
 
-#### 2. Superset Dashboard Implementation
-- `use superset mcp and list me datasources avaiable`
-- `I want you to use superset MCP server to connect to superset. Analyze database Online-Retail-DW and generate me a plan for executive dashboard design`
-- `Dont use @OnlineRetail.csv use online-retail-dw database where data is loaded. I want you to design dashboard with postgress connection and SQL queries there`
-- `Use this plan and implement this dashboard in apache superset via MCP`
-- `the chart revenue by country is not rendering its throwing error An error occurred while rendering the visualization: Error: Item with key "bar" is not registered.`
-- `can you fix Hourly Sales Volume chart to use x-axis hour`
-- `fix revenue by country chart to use map to show amounts per countries`
-- `fix the chart "Top 10 Products by Revenue" to use horizontal bar chart.`
-- `I got this error "Duplicate column/metric labels: "product_description". Please make sure all columns and metrics have a unique label."`
-- `create me a chart of treemap for products distribution in online retail datasource using apache superset mcp`
-- `update readme.md file with all prompts used in this conversation`
+## Setup
 
-#### 3. Data Lake Implementation
+1. Create and activate a Python virtual environment.
 
-- I want to expand online-retail-dw with additional table that provides info to the dim_products table. New table should contain reference to product, date and recommendation columns. 
-   Use postgress MCP to upgrade the databse structure   
+```bash
+python -m venv .venv
+.\.venv\Scripts\activate
+```
 
-- for top 10 selling products in dim_products table do a search on web using brave search api mcp server and gather intelligence about them. Save the results into product_search.txt   
-   file    
+2. Install dependencies.
 
-- use the @product_search.txt and create etl_process2.py script that will load the recommedations from the txt file into dim_product_recommendations table. If there is missing data do 
-   another brave search to gather all necessary intelligence. 
-   
-- 
-## Key Features
+```bash
+pip install -r requirements.txt
+```
 
-- **Idempotent Loads**: Uses `ON CONFLICT` clauses to prevent duplicate data if the script is run multiple times.
-- **Data Cleaning**: Handles missing customer IDs, deduplicates records, and calculates `total_amount`.
-- **Batch Processing**: Inserts data in batches of 1000 rows for better performance and memory management.
+3. Create a local `.env` file from `.env.example`.
+
+```bash
+copy .env.example .env
+```
+
+4. Fill in local Supabase PostgreSQL and API settings in `.env`.
+
+Required database variables:
+
+```env
+POSTGRES_HOST=your_supabase_host
+POSTGRES_PORT=5432
+POSTGRES_DATABASE=postgres
+POSTGRES_USER=your_supabase_user
+POSTGRES_PASSWORD=your_supabase_password
+POSTGRES_SSLMODE=require
+```
+
+Optional external integration variables:
+
+```env
+SUPABASE_PROJECT_URL=your_supabase_project_url
+SUPABASE_ANON_KEY=your_supabase_anon_key
+BRAVE_API_KEY=your_brave_api_key_here
+```
+
+5. Apply database migrations in `supabase/migrations/` to create the warehouse tables, indexes, analytical views, external intelligence table, and external intelligence views.
+
+## How To Run
+
+Run commands from the project root.
+
+### Connection Test
+
+```bash
+python etl\00_test_connection.py
+```
+
+### Data Profiling
+
+```bash
+python etl\01_profile_data.py
+```
+
+### Dimension ETL
+
+```bash
+python etl\03_load_dimensions.py
+```
+
+### Fact ETL
+
+```bash
+python etl\04_load_facts.py
+```
+
+### Load Validation
+
+```bash
+python etl\05_validate_load.py
+```
+
+The validation script checks row counts, revenue totals, required foreign keys, nullable relationship fields, delivery metrics, and review metrics.
+
+### Golden Query Evaluator
+
+```bash
+python agent_eval\evaluate_agent.py
+```
+
+The evaluator runs the golden BI query suite in `agent_eval/golden_queries.yml` and writes the report to `docs/golden_query_evaluation_report.txt`.
+
+### External Intelligence Loader
+
+```bash
+python etl\06_load_external_intelligence.py
+```
+
+This loads `data/external/external_intelligence.json` into `dim_external_intelligence` using idempotent upserts.
+
+## Warehouse Tables And Views
+
+Core warehouse tables:
+
+- `dim_date`
+- `dim_customer`
+- `dim_product`
+- `dim_seller`
+- `dim_payment_summary`
+- `dim_review`
+- `dim_geolocation`
+- `fact_order_items`
+
+External intelligence table:
+
+- `dim_external_intelligence`
+
+Dashboard and analysis views include:
+
+- `vw_sales_overview`
+- `vw_monthly_revenue`
+- `vw_product_category_performance`
+- `vw_seller_performance`
+- `vw_delivery_performance`
+- `vw_customer_satisfaction`
+- `vw_payment_analysis`
+- `vw_geographic_revenue`
+- `vw_product_category_intelligence`
+- `vw_geographic_intelligence`
+- `vw_delivery_intelligence`
+
+## Superset Dashboards
+
+The project includes three main Apache Superset dashboards:
+
+1. **Executive Overview**
+   - Revenue KPIs
+   - Total orders
+   - Average order value
+   - Late delivery rate
+   - Average review score
+   - Monthly revenue trends
+
+2. **Product & Seller Performance**
+   - Product category revenue
+   - Seller performance
+   - Freight ratio
+   - Average order value
+   - Review and delivery metrics by category or seller
+
+3. **Delivery & Customer Satisfaction**
+   - Late delivery trends
+   - Average delivery days
+   - Delay metrics
+   - Review score analysis
+   - Delivery and satisfaction risk areas
+
+The external intelligence views can be added to Superset as tables or detail panels to show market summaries, recommendations, risks, and source URLs beside internal BI metrics.
+
+## Advanced MCP Integration
+
+The project uses two MCP integrations:
+
+### PostgreSQL MCP
+
+The PostgreSQL MCP server gives Codex CLI safe BI access to the Supabase warehouse. It supports schema inspection, metric lookup, foreign key lookup, and read-only SQL execution. Destructive SQL is blocked by design.
+
+### Brave Search MCP
+
+The Brave Search MCP integration collects current external intelligence for three tracks:
+
+- `product_category_market`: market context for the top 10 revenue product categories.
+- `geographic_logistics`: logistics and consumer behavior context for the top 5 customer states.
+- `delivery_customer_experience`: best practices and risks for high late-delivery categories.
+
+Collected intelligence is stored in:
+
+- `data/external/external_intelligence.json`
+- `docs/external_intelligence_search_log.md`
+- `dim_external_intelligence`
+
+Superset-ready views expose the results:
+
+- `vw_product_category_intelligence`
+- `vw_geographic_intelligence`
+- `vw_delivery_intelligence`
+
+## Security Notes
+
+- `.env` is local only and must not be committed.
+- Database passwords, Supabase credentials, Brave API keys, and tokens must not be committed.
+- `.env.example` contains placeholders only.
+- MCP SQL access is read-only for agent queries.
+- External intelligence stores source URLs and summaries, not API keys.
+
+## Known Limitations
+
+- The Olist dataset is historical, so it does not represent live marketplace activity.
+- Some external intelligence items rely on broad Brazil e-commerce sources when category-specific sources were weak.
+- Brave Search intelligence is curated from search results and should be periodically refreshed.
+- Superset dashboards depend on predefined analytical views.
+- The BI agent is intentionally constrained to read-only SQL for safety.
+- External intelligence is loaded as a curated batch, not as a real-time streaming feed.

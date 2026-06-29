@@ -11,3 +11,10 @@ args = ["C:/Users/Ilma/Documents/2 Masters/bi_project/mcp_server/server.py"]
 cwd = "C:/Users/Ilma/Documents/2 Masters/bi_project"
 startup_timeout_sec = 20
 tool_timeout_sec = 60
+
+[mcp_servers.brave-search]
+command = "npx"
+args = ["-y", "@brave/brave-search-mcp-server", "--transport", "stdio"]
+env = { BRAVE_API_KEY = "BSAFOqlmaaf_saM5j3vXjbzhYtsZsJM" } 
+startup_timeout_sec = 20
+tool_timeout_sec = 60

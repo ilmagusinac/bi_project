@@ -3,7 +3,7 @@ Golden Query Evaluation Report
 Total queries: 8
 Passed: 8
 Failed: 0
-Total execution time seconds: 11.9561
+Total execution time seconds: 13.8750
 
 ================================================================================
 Query Results
@@ -12,47 +12,47 @@ Query Results
 GQ001: PASS
 Business question: What are the overall executive KPIs for the Olist warehouse?
 Rows returned: 1
-Execution time seconds: 1.2924
+Execution time seconds: 5.4427
 Message: Query executed successfully.
 
 GQ002: PASS
 Business question: How did total revenue, orders, and average order value trend by purchase month?
 Rows returned: 24
-Execution time seconds: 0.9351
+Execution time seconds: 1.3008
 Message: Query executed successfully.
 
 GQ003: PASS
 Business question: What are the top 10 product categories by total revenue?
 Rows returned: 10
-Execution time seconds: 0.7089
+Execution time seconds: 1.0369
 Message: Query executed successfully.
 
 GQ004: PASS
 Business question: Which sellers generated the most revenue, and how did they perform on delivery and reviews?
 Rows returned: 10
-Execution time seconds: 0.6580
+Execution time seconds: 0.5944
 Message: Query executed successfully.
 
 GQ005: PASS
 Business question: Which purchase months had the highest late delivery rates?
 Rows returned: 10
-Execution time seconds: 0.6243
+Execution time seconds: 0.6367
 Message: Query executed successfully.
 
 GQ006: PASS
 Business question: How do revenue and delivery performance vary by review score?
 Rows returned: 6
-Execution time seconds: 0.4759
+Execution time seconds: 0.4857
 Message: Query executed successfully.
 
 GQ007: PASS
 Business question: Which payment methods account for the most revenue and orders?
 Rows returned: 54
-Execution time seconds: 3.3849
+Execution time seconds: 1.9385
 Message: Query executed successfully.
 
 GQ008: PASS
 Business question: Which customer states generate the most total revenue?
 Rows returned: 10
-Execution time seconds: 3.4356
+Execution time seconds: 1.9689
 Message: Query executed successfully.

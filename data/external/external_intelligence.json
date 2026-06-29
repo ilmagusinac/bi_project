@@ -1,0 +1,579 @@
+{
+  "generated_at": "2026-06-29",
+  "source_systems": {
+    "warehouse": "olist-postgres MCP read-only SQL",
+    "external_search": "brave-search MCP"
+  },
+  "items": [
+    {
+      "intelligence_track": "product_category_market",
+      "entity_type": "product_category",
+      "entity_value": "health_beauty",
+      "internal_metric_context": {
+        "total_revenue": 1441248.07,
+        "total_orders": 8836,
+        "average_order_value": 163.11091783612494,
+        "average_review_score": 4.141218189403421,
+        "late_delivery_rate": 0.08872802481902792,
+        "freight_ratio": 0.12667266225723375
+      },
+      "search_query": "Brazil e-commerce trends health beauty category customer expectations merchandising risks 2026",
+      "market_summary": "Brazil's beauty and personal care market is large and growing, with online retail identified as a fast-growing channel. Search results emphasized personal care, premium products, natural or organic items, vegan and cruelty-free formulas, refill packaging, and social-media-driven beauty discovery.",
+      "target_customer_segment": "Beauty and personal care shoppers, especially digitally active urban consumers and younger buyers who compare product claims, sustainability, price, and convenience.",
+      "business_recommendation": "Prioritize compliant health and beauty listings, strong product content, sustainability claims that can be substantiated, Pix-friendly checkout, and bundles for personal care routines.",
+      "risk_or_challenge": "Health and beauty can face regulatory and trust risks around product claims, certification, ingredients, and counterfeit-like marketplace listings.",
+      "source_titles": [
+        "Brazil Beauty Market Size, Trends & Share Report 2026-2031",
+        "Brazil Beauty and Personal Care Products Industry, Size, Share, Trends, Demand, Product Segmentation, Distribution Channels, Competition, Consumer Preferences, Sustainable Beauty Growth, and Future Outlook - Nexdigm",
+        "E-commerce no Brasil 2026: dados e cenario atual - edrone"
+      ],
+      "source_urls": [
+        "https://www.mordorintelligence.com/industry-reports/brazil-cosmetics-products-market-industry",
+        "https://www.nexdigm.com/market-research/insights/blog/brazil-beauty-and-personal-care-products-industry/",
+        "https://edrone.me/br/blog/dados-ecommerce-brasil"
+      ]
+    },
+    {
+      "intelligence_track": "product_category_market",
+      "entity_type": "product_category",
+      "entity_value": "watches_gifts",
+      "internal_metric_context": {
+        "total_revenue": 1305541.61,
+        "total_orders": 5624,
+        "average_order_value": 232.13755512091038,
+        "average_review_score": 4.018855218855219,
+        "late_delivery_rate": 0.08095476548155567,
+        "freight_ratio": 0.07700706682186867
+      },
+      "search_query": "Brazil e-commerce trends watches gifts category customer expectations merchandising risks 2026",
+      "market_summary": "The category aligns with broader Brazil e-commerce trends around marketplace comparison shopping, promotions, Pix checkout, and value-conscious consumers who still buy status or giftable items when the value proposition is clear.",
+      "target_customer_segment": "Gift buyers and status-oriented shoppers looking for durable, visually appealing items with competitive pricing and reliable delivery.",
+      "business_recommendation": "Merchandise watches and gifts around occasions, discounts, authenticity cues, and fast payment options; use marketplace-style comparison and trust signals prominently.",
+      "risk_or_challenge": "Price sensitivity, authenticity concerns, and promotional dependence can pressure margins in giftable categories.",
+      "source_titles": [
+        "Five consumer currents for 2026 - and how Brazil is riding them - Brazil Stock Guide",
+        "Brazil - eCommerce",
+        "E-commerce market data for Brazil 2024-2027"
+      ],
+      "source_urls": [
+        "https://brazilstockguide.com/insights/five-consumer-currents-2026-brazil/",
+        "https://www.trade.gov/country-commercial-guides/brazil-ecommerce",
+        "https://paymentscmi.com/insights/brazil-e-commerce-market/"
+      ]
+    },
+    {
+      "intelligence_track": "product_category_market",
+      "entity_type": "product_category",
+      "entity_value": "bed_bath_table",
+      "internal_metric_context": {
+        "total_revenue": 1241681.72,
+        "total_orders": 9417,
+        "average_order_value": 131.85533821811617,
+        "average_review_score": 3.898470224002914,
+        "late_delivery_rate": 0.0827710301394512,
+        "freight_ratio": 0.16485145645858426
+      },
+      "search_query": "Brazil e-commerce trends bed bath table home goods customer expectations merchandising risks 2026",
+      "market_summary": "The best relevant sources point to overall Brazil e-commerce expansion, marketplace-led discovery, Pix and digital wallet adoption, and consumer focus on promotions and convenience. Home goods should be positioned around trust, clear delivery costs, and easy comparison.",
+      "target_customer_segment": "Household buyers shopping for practical home products through marketplaces and mobile-first channels.",
+      "business_recommendation": "Use bundles, room-based merchandising, clear shipping thresholds, and transparent delivery estimates to reduce friction for home essentials.",
+      "risk_or_challenge": "Higher freight ratio and bulky or multi-item orders can create delivery-cost resistance and satisfaction issues.",
+      "source_titles": [
+        "E-commerce market data for Brazil 2024-2027",
+        "Brazil - eCommerce",
+        "Brazil E-Commerce Market Size, Share, and Industry Trends Forecast 2026-2036 | MarkWide Research"
+      ],
+      "source_urls": [
+        "https://paymentscmi.com/insights/brazil-e-commerce-market/",
+        "https://www.trade.gov/country-commercial-guides/brazil-ecommerce",
+        "https://markwideresearch.com/brazil-e-commerce-market"
+      ]
+    },
+    {
+      "intelligence_track": "product_category_market",
+      "entity_type": "product_category",
+      "entity_value": "sports_leisure",
+      "internal_metric_context": {
+        "total_revenue": 1156656.48,
+        "total_orders": 7720,
+        "average_order_value": 149.8259689119171,
+        "average_review_score": 4.106864001864585,
+        "late_delivery_rate": 0.0723295914824673,
+        "freight_ratio": 0.1457714653533087
+      },
+      "search_query": "Brazil e-commerce trends sports leisure category customer expectations merchandising risks 2026",
+      "market_summary": "Search results connect sports and leisure to broader 2026 consumer themes: wellness, value, self-expression, social discovery, and instant-payment convenience. Brazilian e-commerce growth and Pix adoption support online demand for lifestyle categories.",
+      "target_customer_segment": "Wellness, hobby, and leisure shoppers who respond to value, product proof, and lifestyle-oriented merchandising.",
+      "business_recommendation": "Group products by activity and use case, add comparison-friendly product information, and promote Pix or marketplace campaigns around seasonal leisure moments.",
+      "risk_or_challenge": "Category demand may be promotion-sensitive, and customer expectations around product fit, quality, and delivery can vary by subcategory.",
+      "source_titles": [
+        "Five consumer currents for 2026 - and how Brazil is riding them - Brazil Stock Guide",
+        "Brazil - eCommerce",
+        "Brazil E-Commerce: Unlocking a World of Opportunity in 2026 - Payscout"
+      ],
+      "source_urls": [
+        "https://brazilstockguide.com/insights/five-consumer-currents-2026-brazil/",
+        "https://www.trade.gov/country-commercial-guides/brazil-ecommerce",
+        "https://payscout.com/brazil-ecommerce-opportunities/"
+      ]
+    },
+    {
+      "intelligence_track": "product_category_market",
+      "entity_type": "product_category",
+      "entity_value": "computers_accessories",
+      "internal_metric_context": {
+        "total_revenue": 1059272.4,
+        "total_orders": 6689,
+        "average_order_value": 158.3603528180595,
+        "average_review_score": 3.9325366229760985,
+        "late_delivery_rate": 0.07589114603296282,
+        "freight_ratio": 0.1390747837855494
+      },
+      "search_query": "Brazil e-commerce trends computers accessories electronics customer expectations merchandising risks 2026",
+      "market_summary": "Electronics and accessories benefit from Brazil's broader e-commerce growth, Pix-enabled checkout, smartphone adoption, and consumer demand for connected devices. Search results also warn that fast technology cycles can complicate inventory management.",
+      "target_customer_segment": "Digitally native electronics buyers, mobile shoppers, and value-conscious consumers upgrading accessories or connected devices.",
+      "business_recommendation": "Keep assortment current, show compatibility clearly, support installment or Pix-oriented checkout, and monitor inventory aging for fast-moving electronics.",
+      "risk_or_challenge": "Technology obsolescence, compatibility errors, and returns can hurt satisfaction if product information is weak.",
+      "source_titles": [
+        "Brazil Digital Shopping Channels For Electronics Retail",
+        "E-commerce no Brasil 2026: dados e cenario atual - edrone",
+        "Brazil - eCommerce"
+      ],
+      "source_urls": [
+        "https://www.expertmarketresearch.com/reports/brazil-consumer-electronics-retail-trends",
+        "https://edrone.me/br/blog/dados-ecommerce-brasil",
+        "https://www.trade.gov/country-commercial-guides/brazil-ecommerce"
+      ]
+    },
+    {
+      "intelligence_track": "product_category_market",
+      "entity_type": "product_category",
+      "entity_value": "furniture_decor",
+      "internal_metric_context": {
+        "total_revenue": 902511.79,
+        "total_orders": 6449,
+        "average_order_value": 139.94600558226082,
+        "average_review_score": 3.906787878787879,
+        "late_delivery_rate": 0.08255339572834174,
+        "freight_ratio": 0.1914094662408787
+      },
+      "search_query": "Brazil e-commerce trends furniture decor home furnishings customer expectations merchandising risks 2026",
+      "market_summary": "Furniture and decor e-commerce sources emphasize immersive product discovery, mobile-first shopping, personalization, AR or room visualization, and the importance of logistics for bulky products.",
+      "target_customer_segment": "Home decorators, movers, and household buyers who need visual confidence, delivery certainty, and reliable product dimensions.",
+      "business_recommendation": "Improve imagery, dimensions, room-use merchandising, and delivery transparency; where possible, highlight fulfillment reliability and return handling.",
+      "risk_or_challenge": "High freight exposure, bulky delivery, damage risk, and expectation gaps can depress review scores.",
+      "source_titles": [
+        "Furniture eCommerce 2026: Trends, Challenges, Expert Opinions",
+        "Ecommerce Furniture Trends in 2026: What Modern Furniture Brands Need to Know - DBMANAGERS - Custom Ecommerce Solutions",
+        "The State of the Furniture Industry and How to Excel in 2026"
+      ],
+      "source_urls": [
+        "https://zolak.tech/blog/furniture-ecommerce",
+        "https://www.dbmanagers.com/ecommerce-furniture-trends-in-2026-what-modern-furniture-brands-need-to-know/",
+        "https://blog.cylindo.com/the-state-of-the-furniture-industry"
+      ]
+    },
+    {
+      "intelligence_track": "product_category_market",
+      "entity_type": "product_category",
+      "entity_value": "housewares",
+      "internal_metric_context": {
+        "total_revenue": 778397.77,
+        "total_orders": 5884,
+        "average_order_value": 132.29057953772943,
+        "average_review_score": 4.053194564903151,
+        "late_delivery_rate": 0.06332567489948306,
+        "freight_ratio": 0.1877563318301901
+      },
+      "search_query": "Brazil e-commerce trends housewares kitchen home goods customer expectations merchandising risks 2026",
+      "market_summary": "Relevant results were broad rather than housewares-specific. They point to continuing Brazilian e-commerce growth, domestic online store strength, Pix adoption, and multichannel consumers who value price, freight, and convenience.",
+      "target_customer_segment": "Practical household shoppers buying kitchen, cleaning, and home utility items through marketplaces and mobile storefronts.",
+      "business_recommendation": "Use multipacks, basket-building offers, and free-shipping thresholds to offset freight sensitivity in lower-ticket household goods.",
+      "risk_or_challenge": "Freight can represent a high share of order value, creating abandonment risk unless shipping value is clear.",
+      "source_titles": [
+        "E-commerce market data for Brazil 2024-2027",
+        "Brazil - eCommerce",
+        "Consumidor digital entra em 2026 mais exigente e multicanal - E-Commerce Brasil"
+      ],
+      "source_urls": [
+        "https://paymentscmi.com/insights/brazil-e-commerce-market/",
+        "https://www.trade.gov/country-commercial-guides/brazil-ecommerce",
+        "https://www.ecommercebrasil.com.br/noticias/consumidor-digital-entra-em-2026-mais-exigente-e-multicanal"
+      ]
+    },
+    {
+      "intelligence_track": "product_category_market",
+      "entity_type": "product_category",
+      "entity_value": "cool_stuff",
+      "internal_metric_context": {
+        "total_revenue": 719329.95,
+        "total_orders": 3632,
+        "average_order_value": 198.05340033039647,
+        "average_review_score": 4.147262094630515,
+        "late_delivery_rate": 0.0661222339304531,
+        "freight_ratio": 0.1168296968588615
+      },
+      "search_query": "Brazil e-commerce trends cool stuff novelty gifts customer expectations merchandising risks 2026",
+      "market_summary": "The category maps best to discovery-led, novelty, and gift behavior. Search results emphasize fragmented journeys, social commerce, AI-assisted recommendations, authenticity, and customers seeking proof that products are worth the price.",
+      "target_customer_segment": "Discovery shoppers, younger marketplace users, and gift buyers influenced by social content and recommendations.",
+      "business_recommendation": "Use social-style merchandising, short product narratives, review proof, and occasion-based bundles; test WhatsApp or social-commerce campaigns.",
+      "risk_or_challenge": "Novelty items can suffer from impulse-purchase remorse if photos, descriptions, and delivery promises are not accurate.",
+      "source_titles": [
+        "Como preparar seu e-commerce para o novo consumidor de 2026 - E-Commerce Brasil",
+        "Five consumer currents for 2026 - and how Brazil is riding them - Brazil Stock Guide",
+        "Brazil - eCommerce"
+      ],
+      "source_urls": [
+        "https://www.ecommercebrasil.com.br/artigos/como-preparar-seu-e-commerce-para-o-novo-consumidor-de-2026",
+        "https://brazilstockguide.com/insights/five-consumer-currents-2026-brazil/",
+        "https://www.trade.gov/country-commercial-guides/brazil-ecommerce"
+      ]
+    },
+    {
+      "intelligence_track": "product_category_market",
+      "entity_type": "product_category",
+      "entity_value": "auto",
+      "internal_metric_context": {
+        "total_revenue": 685384.32,
+        "total_orders": 3897,
+        "average_order_value": 175.87485758275596,
+        "average_review_score": 4.063692748091603,
+        "late_delivery_rate": 0.08099173553719008,
+        "freight_ratio": 0.13520036466547702
+      },
+      "search_query": "Brazil e-commerce trends auto parts accessories customer expectations merchandising risks 2026",
+      "market_summary": "Search results were mostly broad Brazil e-commerce sources. The useful external context is that marketplace purchasing, Pix checkout, mobile shopping, and price/freight sensitivity shape online retail behavior across categories including auto accessories.",
+      "target_customer_segment": "Vehicle owners looking for replacement parts, accessories, and practical upgrades with confidence in fit and delivery.",
+      "business_recommendation": "Strengthen fitment data, compatibility filters, seller quality controls, and delivery estimates; highlight warranty and return rules.",
+      "risk_or_challenge": "Incorrect compatibility and weak product specs can drive returns, support costs, and lower reviews.",
+      "source_titles": [
+        "E-commerce market data for Brazil 2024-2027",
+        "Brazil - eCommerce",
+        "E-commerce no Brasil 2026: dados e cenario atual - edrone"
+      ],
+      "source_urls": [
+        "https://paymentscmi.com/insights/brazil-e-commerce-market/",
+        "https://www.trade.gov/country-commercial-guides/brazil-ecommerce",
+        "https://edrone.me/br/blog/dados-ecommerce-brasil"
+      ]
+    },
+    {
+      "intelligence_track": "product_category_market",
+      "entity_type": "product_category",
+      "entity_value": "garden_tools",
+      "internal_metric_context": {
+        "total_revenue": 584219.21,
+        "total_orders": 3518,
+        "average_order_value": 166.065722001137,
+        "average_review_score": 4.045422943221321,
+        "late_delivery_rate": 0.07821486082355647,
+        "freight_ratio": 0.16939318034406983
+      },
+      "search_query": "Brazil e-commerce trends garden tools home improvement customer expectations merchandising risks 2026",
+      "market_summary": "Relevant search results were broad. They show Brazil e-commerce growth, Pix and digital wallet adoption, and a market where logistics and route optimization are becoming important to compress delivery windows.",
+      "target_customer_segment": "Home improvement and garden shoppers purchasing practical tools where durability, price, and delivery cost matter.",
+      "business_recommendation": "Merchandise by project type, show product dimensions and weight clearly, and manage freight thresholds for heavier items.",
+      "risk_or_challenge": "Large or heavy tools may increase freight resistance and late-delivery dissatisfaction.",
+      "source_titles": [
+        "E-commerce market data for Brazil 2024-2027",
+        "Brazil - eCommerce",
+        "Brazil E-commerce Market Size & Outlook, 2026-2033"
+      ],
+      "source_urls": [
+        "https://paymentscmi.com/insights/brazil-e-commerce-market/",
+        "https://www.trade.gov/country-commercial-guides/brazil-ecommerce",
+        "https://www.grandviewresearch.com/horizon/outlook/e-commerce-market/brazil"
+      ]
+    },
+    {
+      "intelligence_track": "geographic_logistics",
+      "entity_type": "customer_state",
+      "entity_value": "SP",
+      "internal_metric_context": {
+        "total_revenue": 5921678.12,
+        "total_orders": 41375,
+        "average_order_value": 143.12212978851963,
+        "average_review_score": 4.152284507286225,
+        "average_delivery_days": 8.564843998126337,
+        "late_delivery_rate": 0.05754019612498816,
+        "freight_ratio": 0.12137151926116511
+      },
+      "search_query": "Sao Paulo SP Brazil e-commerce logistics delivery challenges consumer behavior 2026",
+      "market_summary": "Sao Paulo is described as a high-density e-commerce and logistics hub with strong purchasing power, fulfillment investment, tighter delivery windows, and urban logistics challenges such as congestion and fragmented last-mile demand.",
+      "target_customer_segment": "Urban and digitally native customers in Sao Paulo with high expectations for delivery speed, price transparency, and marketplace convenience.",
+      "business_recommendation": "Use SP as the priority region for fast-delivery promises, inventory staging, and logistics experiments because internal revenue is highest and delivery performance is comparatively strong.",
+      "risk_or_challenge": "Dense urban delivery can face congestion, parking, access, and cost issues despite strong logistics infrastructure.",
+      "source_titles": [
+        "Brazil E-Commerce Market Size, Share, and Industry Trends Forecast 2026-2036 | MarkWide Research",
+        "E-COMMERCE BRASIL FORUM 2026 - Distrito Anhembi",
+        "Understanding urban logistics and consumer behavior in Sao Paulo city | Request PDF"
+      ],
+      "source_urls": [
+        "https://markwideresearch.com/brazil-e-commerce-market",
+        "https://distritoanhembi.com.br/en/events/forum-ecommerce-brasil-2026-2/",
+        "https://www.researchgate.net/publication/354883644_Understanding_urban_logistics_and_consumer_behavior_in_Sao_Paulo_city"
+      ]
+    },
+    {
+      "intelligence_track": "geographic_logistics",
+      "entity_type": "customer_state",
+      "entity_value": "RJ",
+      "internal_metric_context": {
+        "total_revenue": 2129681.98,
+        "total_orders": 12762,
+        "average_order_value": 166.87682024761008,
+        "average_review_score": 3.756313204098226,
+        "average_delivery_days": 15.89726731966147,
+        "late_delivery_rate": 0.143096233201123,
+        "freight_ratio": 0.14349058350956231
+      },
+      "search_query": "Rio de Janeiro RJ Brazil e-commerce logistics delivery challenges consumer behavior 2026",
+      "market_summary": "Rio de Janeiro combines major metro demand with delivery complexity. Search results highlight intense traffic, circulation restrictions, irregular topography, difficult access areas, and the need for routing and specialized logistics planning.",
+      "target_customer_segment": "RJ online shoppers who expect marketplace convenience but may experience higher delivery variability and cost sensitivity.",
+      "business_recommendation": "Treat RJ as a delivery-risk priority: improve carrier routing, promise dates, proactive delay messages, and seller/service-level monitoring.",
+      "risk_or_challenge": "Internal late delivery rate and average delivery days are materially worse than SP, while external sources identify concrete urban logistics constraints.",
+      "source_titles": [
+        "Logistica e entregas no Rio de Janeiro: desafios e solucoes para 2026 - MXLOG",
+        "Expensive shipping causes 57% of consumers to abandon online shopping in Brazil, according to a Nuvemshop survey. - CPG Click Oil and Gas",
+        "Brazil E-Commerce Market Size, Share, and Industry Trends Forecast 2026-2036 | MarkWide Research"
+      ],
+      "source_urls": [
+        "https://mxlog.com.br/logistica-entregas-rio-de-janeiro-2026/",
+        "https://en.clickpetroleoegas.com.br/expensive-shipping-causes-57-of-consumers-to-abandon-online-shopping-in-brazil-according-to-a-nuvemshop-survey-rmrm97/",
+        "https://markwideresearch.com/brazil-e-commerce-market"
+      ]
+    },
+    {
+      "intelligence_track": "geographic_logistics",
+      "entity_type": "customer_state",
+      "entity_value": "MG",
+      "internal_metric_context": {
+        "total_revenue": 1856161.49,
+        "total_orders": 11544,
+        "average_order_value": 160.79014986139987,
+        "average_review_score": 4.136873246947787,
+        "average_delivery_days": 12.48369505680508,
+        "late_delivery_rate": 0.062064396181205864,
+        "freight_ratio": 0.14592127972658242
+      },
+      "search_query": "Minas Gerais MG Brazil e-commerce logistics delivery challenges consumer behavior 2026",
+      "market_summary": "Minas Gerais appears as an important Southeast market with logistics investment, including a new distribution center in Contagem. Sources also connect MG to social and WhatsApp-driven commerce behavior.",
+      "target_customer_segment": "Southeast consumers outside Sao Paulo, including marketplace and social-commerce shoppers in Belo Horizonte and surrounding areas.",
+      "business_recommendation": "Use MG as a growth market for regional fulfillment and social-commerce experiments while monitoring freight ratio and delivery days.",
+      "risk_or_challenge": "Delivery performance is reasonable but not SP-level; regional expansion requires careful carrier coverage outside dense metro areas.",
+      "source_titles": [
+        "Agencia Minas Gerais | Multinacional do e-commerce inaugura centro de distribuicao em Minas Gerais",
+        "Brazil E-Commerce Market Size, Share, and Industry Trends Forecast 2026-2036 | MarkWide Research",
+        "Consumidor digital entra em 2026 mais exigente e multicanal - E-Commerce Brasil"
+      ],
+      "source_urls": [
+        "https://www.agenciaminas.mg.gov.br/noticia/multinacional-do-e-commerce-inaugura-centro-de-distribuicao-em-minas-gerais",
+        "https://markwideresearch.com/brazil-e-commerce-market",
+        "https://www.ecommercebrasil.com.br/noticias/consumidor-digital-entra-em-2026-mais-exigente-e-multicanal"
+      ]
+    },
+    {
+      "intelligence_track": "geographic_logistics",
+      "entity_type": "customer_state",
+      "entity_value": "RS",
+      "internal_metric_context": {
+        "total_revenue": 885826.76,
+        "total_orders": 5432,
+        "average_order_value": 163.07561855670104,
+        "average_review_score": 4.106979513837004,
+        "average_delivery_days": 15.302462177966724,
+        "late_delivery_rate": 0.06720315803943992,
+        "freight_ratio": 0.15299011739044777
+      },
+      "search_query": "Rio Grande do Sul RS Brazil e-commerce logistics delivery challenges consumer behavior 2026",
+      "market_summary": "Search results did not return highly specific RS e-commerce sources, but relevant Brazil-wide logistics sources emphasize shipping cost abandonment, delivery-time sensitivity, route optimization, and infrastructure constraints.",
+      "target_customer_segment": "Southern Brazil customers who generate meaningful revenue but may face longer delivery distances from core Southeast fulfillment networks.",
+      "business_recommendation": "Track RS carrier performance separately, test regional shipping thresholds, and communicate delivery windows clearly for southern routes.",
+      "risk_or_challenge": "Average delivery days are high, and freight ratio is above SP and RJ, making cost and delivery promise management important.",
+      "source_titles": [
+        "Expensive shipping causes 57% of consumers to abandon online shopping in Brazil, according to a Nuvemshop survey. - CPG Click Oil and Gas",
+        "Brazil E-Commerce Market Size, Share, and Industry Trends Forecast 2026-2036 | MarkWide Research",
+        "E-commerce no Brasil 2026: dados e cenario atual - edrone"
+      ],
+      "source_urls": [
+        "https://en.clickpetroleoegas.com.br/expensive-shipping-causes-57-of-consumers-to-abandon-online-shopping-in-brazil-according-to-a-nuvemshop-survey-rmrm97/",
+        "https://markwideresearch.com/brazil-e-commerce-market",
+        "https://edrone.me/br/blog/dados-ecommerce-brasil"
+      ]
+    },
+    {
+      "intelligence_track": "geographic_logistics",
+      "entity_type": "customer_state",
+      "entity_value": "PR",
+      "internal_metric_context": {
+        "total_revenue": 800935.44,
+        "total_orders": 4998,
+        "average_order_value": 160.25118847539017,
+        "average_review_score": 4.165319353491256,
+        "average_delivery_days": 12.812856658269125,
+        "late_delivery_rate": 0.05338541888425052,
+        "freight_ratio": 0.14714254622070413
+      },
+      "search_query": "Parana PR Brazil e-commerce logistics delivery challenges consumer behavior 2026",
+      "market_summary": "Search results were mostly Brazil-wide rather than PR-specific. The useful signals are that freight cost and delivery time are major purchase barriers, and Brazilian consumers in 2026 remain multichannel, demanding, and focused on price and shipping.",
+      "target_customer_segment": "Parana customers with strong review scores and relatively low late delivery, but continued sensitivity to freight and delivery cost.",
+      "business_recommendation": "Maintain PR delivery reliability, use shipping promotions selectively, and monitor whether freight ratio limits conversion.",
+      "risk_or_challenge": "Weak PR-specific source coverage means regional conclusions should be treated as lower confidence and validated with internal carrier data.",
+      "source_titles": [
+        "Expensive shipping causes 57% of consumers to abandon online shopping in Brazil, according to a Nuvemshop survey. - CPG Click Oil and Gas",
+        "Consumidor digital entra em 2026 mais exigente e multicanal - E-Commerce Brasil",
+        "Como preparar seu e-commerce para o novo consumidor de 2026 - E-Commerce Brasil"
+      ],
+      "source_urls": [
+        "https://en.clickpetroleoegas.com.br/expensive-shipping-causes-57-of-consumers-to-abandon-online-shopping-in-brazil-according-to-a-nuvemshop-survey-rmrm97/",
+        "https://www.ecommercebrasil.com.br/noticias/consumidor-digital-entra-em-2026-mais-exigente-e-multicanal",
+        "https://www.ecommercebrasil.com.br/artigos/como-preparar-seu-e-commerce-para-o-novo-consumidor-de-2026"
+      ]
+    },
+    {
+      "intelligence_track": "delivery_customer_experience",
+      "entity_type": "product_category_name_english",
+      "entity_value": "health_beauty",
+      "internal_metric_context": {
+        "total_revenue": 1441248.07,
+        "total_orders": 8836,
+        "average_order_value": 163.11091783612494,
+        "average_review_score": 4.141218189403421,
+        "average_delivery_days": 11.914967782824549,
+        "late_delivery_rate": 0.08872802481902792,
+        "freight_ratio": 0.12667266225723375
+      },
+      "search_query": "Brazil e-commerce late delivery impact customer satisfaction review scores health beauty operational best practices",
+      "market_summary": "Late delivery has direct satisfaction and trust consequences. Health and beauty also has compliance and listing-quality risks, making reliable fulfillment and clear expectations especially important for a top-revenue category.",
+      "target_customer_segment": "Repeat health and beauty buyers who expect trustworthy products, predictable delivery, and clear communication.",
+      "business_recommendation": "Prioritize delay prediction, proactive customer messaging, seller compliance, and inventory availability for high-volume health and beauty SKUs.",
+      "risk_or_challenge": "The category combines the highest revenue in the warehouse with the highest selected late-delivery rate, increasing customer experience exposure.",
+      "source_titles": [
+        "How predicting delivery delays Increases Customer Satisfaction | Sendcloud",
+        "Brazil Ecommerce Market | 2024 - 2030",
+        "Brazil E-Commerce Market Size, Share, and Industry Trends Forecast 2026-2036 | MarkWide Research"
+      ],
+      "source_urls": [
+        "https://www.sendcloud.com/predicting-delivery-delays-customer-satisfaction/",
+        "https://www.kenresearch.com/brazil-ecommerce-market",
+        "https://markwideresearch.com/brazil-e-commerce-market"
+      ]
+    },
+    {
+      "intelligence_track": "delivery_customer_experience",
+      "entity_type": "product_category_name_english",
+      "entity_value": "office_furniture",
+      "internal_metric_context": {
+        "total_revenue": 342532.65,
+        "total_orders": 1273,
+        "average_order_value": 269.075137470542,
+        "average_review_score": 3.4919499105545615,
+        "average_delivery_days": 20.786570743405274,
+        "late_delivery_rate": 0.08811354228267297,
+        "freight_ratio": 0.20019098909257263
+      },
+      "search_query": "Brazil e-commerce late delivery impact customer satisfaction review scores office furniture operational best practices",
+      "market_summary": "Office furniture has high average order value, long delivery days, high freight ratio, and low review score internally. External sources stress that delivery reliability, network design, and proactive delay management are central to satisfaction.",
+      "target_customer_segment": "Business and home-office buyers who may need items by a planned setup date and are sensitive to delivery failure.",
+      "business_recommendation": "Separate office furniture into a high-touch fulfillment workflow with conservative delivery promises, carrier tracking, and proactive support.",
+      "risk_or_challenge": "Late or failed delivery can disrupt work setups and produce outsized dissatisfaction because the category is bulky and high value.",
+      "source_titles": [
+        "How predicting delivery delays Increases Customer Satisfaction | Sendcloud",
+        "E-commerce logistics: customer satisfaction | Schneider",
+        "What is the True Cost of Failed Deliveries in E-commerce?"
+      ],
+      "source_urls": [
+        "https://www.sendcloud.com/predicting-delivery-delays-customer-satisfaction/",
+        "https://schneider.com/resources/best-practices/ecommerce-logistics-key-to-customer-satisfaction",
+        "https://www.shipveho.com/blog/what-is-the-true-cost-of-failed-deliveries-in-e-commerce"
+      ]
+    },
+    {
+      "intelligence_track": "delivery_customer_experience",
+      "entity_type": "product_category_name_english",
+      "entity_value": "baby",
+      "internal_metric_context": {
+        "total_revenue": 480118,
+        "total_orders": 2885,
+        "average_order_value": 166.41871750433276,
+        "average_review_score": 4.010526315789473,
+        "average_delivery_days": 12.45137491616365,
+        "late_delivery_rate": 0.08548123980424144,
+        "freight_ratio": 0.14236731386867396
+      },
+      "search_query": "Brazil e-commerce late delivery impact customer satisfaction review scores baby products operational best practices",
+      "market_summary": "General delivery research shows late deliveries reduce trust and repeat purchase intent. For baby products, reliability is especially important because many purchases are need-based and time-sensitive.",
+      "target_customer_segment": "Parents and caregivers buying baby products with strong expectations for reliability, safety, and timely arrival.",
+      "business_recommendation": "Flag baby products for fulfillment reliability monitoring, conservative delivery windows, and proactive delay notifications.",
+      "risk_or_challenge": "Time-sensitive purchases can turn late delivery into a stronger satisfaction problem even when review scores remain acceptable.",
+      "source_titles": [
+        "How predicting delivery delays Increases Customer Satisfaction | Sendcloud",
+        "Customer loyality in e-commerce: a case study on deadline compliance in Brazilian retail during the Covid-19 pandemic | ReMark - Revista Brasileira de Marketing",
+        "Delivery Success Rates: Key Retail & eCommerce Stats"
+      ],
+      "source_urls": [
+        "https://www.sendcloud.com/predicting-delivery-delays-customer-satisfaction/",
+        "https://periodicos.uninove.br/remark/article/view/29256",
+        "https://smartroutes.io/blogs/delivery-success-rates-key-stats-for-retail-and-ecommerce/"
+      ]
+    },
+    {
+      "intelligence_track": "delivery_customer_experience",
+      "entity_type": "product_category_name_english",
+      "entity_value": "bed_bath_table",
+      "internal_metric_context": {
+        "total_revenue": 1241681.72,
+        "total_orders": 9417,
+        "average_order_value": 131.85533821811617,
+        "average_review_score": 3.898470224002914,
+        "average_delivery_days": 12.750479320734046,
+        "late_delivery_rate": 0.0827710301394512,
+        "freight_ratio": 0.16485145645858426
+      },
+      "search_query": "Brazil e-commerce late delivery impact customer satisfaction review scores bed bath table home goods operational best practices",
+      "market_summary": "Delivery transparency and logistics quality are central to customer satisfaction. For bed, bath, and table items, the warehouse shows high revenue, high order count, elevated freight ratio, and below-4 average review score.",
+      "target_customer_segment": "Household shoppers buying practical home goods, often comparing freight cost and delivery promises.",
+      "business_recommendation": "Use delivery-promise accuracy, shipment status messaging, and freight-threshold offers to protect satisfaction in this high-volume category.",
+      "risk_or_challenge": "High order volume means even moderate late-delivery rates create many affected customers and potential negative reviews.",
+      "source_titles": [
+        "E-commerce logistics: customer satisfaction | Schneider",
+        "How predicting delivery delays Increases Customer Satisfaction | Sendcloud",
+        "What is the True Cost of Failed Deliveries in E-commerce?"
+      ],
+      "source_urls": [
+        "https://schneider.com/resources/best-practices/ecommerce-logistics-key-to-customer-satisfaction",
+        "https://www.sendcloud.com/predicting-delivery-delays-customer-satisfaction/",
+        "https://www.shipveho.com/blog/what-is-the-true-cost-of-failed-deliveries-in-e-commerce"
+      ]
+    },
+    {
+      "intelligence_track": "delivery_customer_experience",
+      "entity_type": "product_category_name_english",
+      "entity_value": "furniture_decor",
+      "internal_metric_context": {
+        "total_revenue": 902511.79,
+        "total_orders": 6449,
+        "average_order_value": 139.94600558226082,
+        "average_review_score": 3.906787878787879,
+        "average_delivery_days": 12.835171568627452,
+        "late_delivery_rate": 0.08255339572834174,
+        "freight_ratio": 0.1914094662408787
+      },
+      "search_query": "Brazil e-commerce late delivery impact customer satisfaction review scores furniture decor operational best practices",
+      "market_summary": "Furniture and decor delivery is operationally sensitive because large items, coordinated home plans, and fulfillment choices shape satisfaction. Sources highlight last-mile challenges, fulfillment versus dropshipping choices, and trust being built at delivery.",
+      "target_customer_segment": "Home decorators and furniture buyers who need accurate product information, predictable arrival, and damage-free delivery.",
+      "business_recommendation": "Strengthen fulfillment controls, delivery appointment communication, packaging standards, and reverse logistics for furniture and decor.",
+      "risk_or_challenge": "Bulky-item delivery failures can cause high support costs, visible complaints, and lower review satisfaction.",
+      "source_titles": [
+        "Comparative Analysis of Operational Models in Furniture and Decoration E-Commerce: Dropshipping Versus Fulfillment Based on Critical Parameters | Revista de Gestao e Secretariado",
+        "Brazil Ecommerce Market | 2024 - 2030",
+        "Online Furniture Retail Moves Beyond Discounts as Logistics Takes Center Stage"
+      ],
+      "source_urls": [
+        "https://ojs.revistagesec.org.br/secretariado/article/view/5198",
+        "https://www.kenresearch.com/brazil-ecommerce-market",
+        "https://www.openpr.com/news/4414617/online-furniture-retail-moves-beyond-discounts-as-logistics"
+      ]
+    }
+  ]
+}
