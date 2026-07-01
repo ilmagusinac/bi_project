@@ -1,162 +1,86 @@
 # Olist BI Agent
 
-AI-powered Business Intelligence project for the Olist Brazilian E-Commerce dataset. The project builds a PostgreSQL analytical warehouse, exposes it safely through a PostgreSQL MCP server for Codex CLI, enriches warehouse metrics with Brave Search MCP external intelligence, and uses Superset MCP for controlled chart and dashboard interaction in Apache Superset.
+Olist BI Agent is an AI-powered Business Intelligence final project for e-commerce analytics. It transforms the Olist Brazilian E-Commerce Public Dataset into a Supabase PostgreSQL analytical warehouse, exposes the warehouse through safe read-only MCP tools for Codex CLI, enriches selected metrics with external market intelligence, and presents results in Apache Superset dashboards.
 
-## Technology Stack
+## 1. Project Overview
 
-- Codex CLI
-- PostgreSQL MCP server
-- Brave Search MCP server
-- Superset MCP server
-- Supabase PostgreSQL
-- Python ETL with `pandas` and `psycopg`
-- Apache Superset
+The project demonstrates an end-to-end BI agent architecture:
 
-## Dataset
+- Raw Olist CSV files are profiled, transformed, loaded, and validated with Python ETL scripts.
+- The transformed data is stored in a PostgreSQL star/snowflake warehouse hosted on Supabase.
+- Analytical SQL views provide stable, dashboard-ready metric layers.
+- Codex CLI connects to the warehouse through the `olist-postgres` MCP server for safe BI question answering.
+- Brave Search MCP supports an external intelligence layer for market, logistics, and customer experience context.
+- Superset MCP supports interaction with Apache Superset datasets, charts, and dashboards.
 
-The project uses the **Olist Brazilian E-Commerce Public Dataset**.
+The final architecture is centered on Olist, Codex CLI, MCP integrations, Supabase PostgreSQL, and Apache Superset.
 
-Raw source files include customers, orders, order items, payments, reviews, products, sellers, geolocation, and product category translations. The legacy Online Retail dataset is not used as the final BI dataset.
+## 2. Business Objective
 
-## Architecture
+The main objective is to build an AI-powered BI system that helps analyze e-commerce performance across revenue, products, sellers, delivery, customer satisfaction, geography, payment behavior, and external market signals.
+
+Key business metrics include:
+
+- Total revenue
+- Product revenue
+- Freight revenue
+- Total orders
+- Average order value
+- Late delivery rate
+- Average review score
+- Average delivery days
+- Freight ratio
+
+## 3. Dataset
+
+The project uses the **Olist Brazilian E-Commerce Public Dataset** from Kaggle.
+
+The raw dataset includes CSV files for customers, orders, order items, order payments, order reviews, products, sellers, geolocation, and product category name translations.
+
+Raw Kaggle files are stored locally in `data/raw/` and are intentionally not committed to GitHub. This keeps the repository small and avoids redistributing downloaded source data. The reproducible external intelligence artifact, `data/external/external_intelligence.json`, is committed because it supports the external intelligence layer used by the warehouse and dashboards.
+
+## 4. Architecture
 
 ```text
-Olist CSV files
-    -> Python pandas/psycopg ETL
+Kaggle Olist CSV files
+    -> data/raw/ (local only)
+    -> Python ETL with pandas and psycopg
     -> Supabase PostgreSQL warehouse
     -> Analytical SQL views
     -> Apache Superset dashboards
 
 Supabase PostgreSQL warehouse
-    -> PostgreSQL MCP server
+    -> olist-postgres MCP server
     -> Codex CLI BI agent
 
-Warehouse target queries
+Business targets and warehouse metrics
     -> Brave Search MCP
     -> data/external/external_intelligence.json
     -> dim_external_intelligence
-    -> external intelligence Superset views
+    -> External intelligence analytical views
 
 Codex CLI BI agent
-    -> Superset MCP server
-    -> Apache Superset charts and dashboards
+    -> Superset MCP
+    -> Superset datasets, charts, and dashboards
 ```
 
-The core warehouse stores historical Olist business metrics. PostgreSQL MCP lets the agent inspect schema, explain metrics, and run safe read-only warehouse queries. Brave Search MCP adds current market, logistics, and customer experience context. Superset MCP lets the agent inspect Superset assets and create or place charts on dashboards when explicitly requested.
+The architecture separates controlled write operations from AI query access. ETL scripts are the controlled write path for loading and validating data. The AI agent uses read-only MCP tools and is blocked from destructive SQL.
 
-## Folder Structure
+## 5. Repository Structure
 
 ```text
-agent_eval/                  Golden query evaluator and test cases
-data/raw/                    Raw Olist CSV files
-data/processed/              Processed ETL outputs
-data/external/               Brave Search external intelligence JSON
-docs/                        Reports, summaries, prompts, and documentation
-etl/                         Python ETL, validation, and external intelligence loaders
-mcp_server/                  PostgreSQL MCP server tools and prompts
-supabase/migrations/         PostgreSQL schema, indexes, views, and intelligence layer
-superset/dashboard_sql/      Dashboard SQL assets
-superset/exported_dashboards/ Superset dashboard export location
-legacy_professor_reference/  Old reference material, not the final dataset
+agent_eval/                   Golden query suite and evaluator
+data/external/                Committed external intelligence JSON
+data/raw/                     Local Kaggle CSV files, excluded from Git
+docs/                         Reports, architecture notes, prompts, evidence, screenshots
+etl/                          Python profiling, transformation, loading, and validation scripts
+mcp_server/                   PostgreSQL MCP server and BI agent instructions
+supabase/migrations/          PostgreSQL schema, indexes, views, and intelligence layer
 ```
 
-## Setup
+## 6. Data Warehouse Design
 
-1. Create and activate a Python virtual environment.
-
-```bash
-python -m venv .venv
-.\.venv\Scripts\activate
-```
-
-2. Install dependencies.
-
-```bash
-pip install -r requirements.txt
-```
-
-3. Create a local `.env` file from `.env.example`.
-
-```bash
-copy .env.example .env
-```
-
-4. Fill in local Supabase PostgreSQL and API settings in `.env`.
-
-Required database variables:
-
-```env
-POSTGRES_HOST=your_supabase_host
-POSTGRES_PORT=5432
-POSTGRES_DATABASE=postgres
-POSTGRES_USER=your_supabase_user
-POSTGRES_PASSWORD=your_supabase_password
-POSTGRES_SSLMODE=require
-```
-
-Optional external integration variables:
-
-```env
-SUPABASE_PROJECT_URL=your_supabase_project_url
-SUPABASE_ANON_KEY=your_supabase_anon_key
-BRAVE_API_KEY=your_brave_api_key_here
-```
-
-5. Apply database migrations in `supabase/migrations/` to create the warehouse tables, indexes, analytical views, external intelligence table, and external intelligence views.
-
-## How To Run
-
-Run commands from the project root.
-
-### Connection Test
-
-```bash
-python etl\00_test_connection.py
-```
-
-### Data Profiling
-
-```bash
-python etl\01_profile_data.py
-```
-
-### Dimension ETL
-
-```bash
-python etl\03_load_dimensions.py
-```
-
-### Fact ETL
-
-```bash
-python etl\04_load_facts.py
-```
-
-### Load Validation
-
-```bash
-python etl\05_validate_load.py
-```
-
-The validation script checks row counts, revenue totals, required foreign keys, nullable relationship fields, delivery metrics, and review metrics.
-
-### Golden Query Evaluator
-
-```bash
-python agent_eval\evaluate_agent.py
-```
-
-The evaluator runs the golden BI query suite in `agent_eval/golden_queries.yml` and writes the report to `docs/golden_query_evaluation_report.txt`.
-
-### External Intelligence Loader
-
-```bash
-python etl\06_load_external_intelligence.py
-```
-
-This loads `data/external/external_intelligence.json` into `dim_external_intelligence` using idempotent upserts.
-
-## Warehouse Tables And Views
+The warehouse uses a snowflake schema with `fact_order_items` as the central fact table.
 
 Core warehouse tables:
 
@@ -173,7 +97,7 @@ External intelligence table:
 
 - `dim_external_intelligence`
 
-Dashboard and analysis views include:
+Important analytical views include:
 
 - `vw_sales_overview`
 - `vw_monthly_revenue`
@@ -187,9 +111,56 @@ Dashboard and analysis views include:
 - `vw_geographic_intelligence`
 - `vw_delivery_intelligence`
 
-## Superset Dashboards
+Surrogate keys are used in warehouse dimension tables, and PostgreSQL-compatible SQL is used throughout the schema and views.
 
-The project includes three main Apache Superset dashboards:
+## 7. ETL Pipeline
+
+The ETL pipeline is implemented with Python, `pandas`, and `psycopg`.
+
+Pipeline responsibilities:
+
+- Test the Supabase PostgreSQL connection.
+- Profile the raw Olist CSV files.
+- Transform raw records into warehouse-ready dimensions and facts.
+- Load dimensions and facts into PostgreSQL.
+- Validate row counts, metrics, relationships, and business rules.
+- Load curated external intelligence into `dim_external_intelligence`.
+
+ETL scripts are controlled write scripts. They are separate from the AI agent, which only receives read-only database access through MCP.
+
+## 8. MCP Integrations
+
+The project uses three MCP integrations.
+
+### PostgreSQL MCP: `olist-postgres`
+
+The `olist-postgres` MCP server gives Codex CLI controlled access to the Supabase PostgreSQL warehouse. It supports schema inspection, metric lookup, foreign key lookup, and SQL execution.
+
+### Brave Search MCP
+
+Brave Search MCP provides external market intelligence for selected product, geography, logistics, and customer experience questions. The curated output is stored in `data/external/external_intelligence.json`, loaded into `dim_external_intelligence`, and exposed through external intelligence views for Superset and agent queries.
+
+### Superset MCP
+
+Superset MCP allows Codex CLI to interact with Apache Superset datasets, charts, and dashboards through controlled tools. It supports dashboard evidence collection and chart/dashboard operations when explicitly requested.
+
+## 9. Golden Query Evaluation
+
+The golden query suite is stored in `agent_eval/golden_queries.yml`.
+
+It contains 9 golden queries that evaluate whether the BI agent can answer approved business questions using the correct PostgreSQL views, metrics, joins, filters, and ordering.
+
+The evaluator is implemented in `agent_eval/evaluate_agent.py` and generates:
+
+```text
+docs/golden_query_evaluation_report.txt
+```
+
+The golden queries cover executive KPIs, monthly revenue, product category performance, seller performance, delivery performance, customer satisfaction, payment analysis, geographic revenue, and external market intelligence.
+
+## 10. Superset Dashboards
+
+The main Apache Superset dashboards are:
 
 1. **Executive Overview**
    - Revenue KPIs
@@ -201,10 +172,9 @@ The project includes three main Apache Superset dashboards:
 
 2. **Product & Seller Performance**
    - Product category revenue
-   - Seller performance
+   - Seller revenue and order performance
    - Freight ratio
-   - Average order value
-   - Review and delivery metrics by category or seller
+   - Delivery and review metrics by product category or seller
 
 3. **Delivery & Customer Satisfaction**
    - Late delivery trends
@@ -213,68 +183,137 @@ The project includes three main Apache Superset dashboards:
    - Review score analysis
    - Delivery and satisfaction risk areas
 
-The external intelligence views can be added to Superset as tables or detail panels to show market summaries, recommendations, risks, and source URLs beside internal BI metrics.
+4. **External Market Intelligence**
+   - Product category market context
+   - Geographic logistics context
+   - Delivery and customer experience risks
+   - Business recommendations and source URLs
 
-## MCP Integrations
+Dashboard evidence and screenshots are stored in `docs/screenshots/`.
 
-The project uses three MCP integrations:
+## 11. Security and Git Hygiene
 
-### PostgreSQL MCP
+The repository must not contain real secrets, passwords, tokens, API keys, Supabase credentials, Brave API keys, or local `.env` contents.
 
-The PostgreSQL MCP server gives Codex CLI safe BI access to the Supabase warehouse. It supports schema inspection, metric lookup, foreign key lookup, and read-only SQL execution. Destructive SQL is blocked by design.
+Excluded from Git:
 
-### Brave Search MCP
+- `.env`
+- `.codex/`
+- `.venv/`
+- `data/raw/`
+- `__pycache__/`
+- Python bytecode files
 
-The Brave Search MCP integration collects current external intelligence for three tracks:
+Committed for reproducibility:
 
-- `product_category_market`: market context for the top 10 revenue product categories.
-- `geographic_logistics`: logistics and consumer behavior context for the top 5 customer states.
-- `delivery_customer_experience`: best practices and risks for high late-delivery categories.
-
-Collected intelligence is stored in:
-
+- `.env.example` with placeholder variable names only
 - `data/external/external_intelligence.json`
+- SQL migrations
+- ETL source code
+- MCP server source code
+- Documentation, reports, and dashboard evidence
+
+Security boundary:
+
+- ETL scripts are controlled write scripts used to load and validate the warehouse.
+- Codex CLI uses MCP tools for BI analysis.
+- The `olist-postgres` MCP server only allows safe read-only warehouse queries for the AI agent.
+- Destructive SQL is blocked by design.
+
+## 12. Setup Instructions
+
+Run commands from the project root.
+
+1. Create and activate a Python virtual environment.
+
+```bash
+python -m venv .venv
+.\.venv\Scripts\activate
+```
+
+2. Install Python dependencies.
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Create a local `.env` file from `.env.example`.
+
+```bash
+copy .env.example .env
+```
+
+4. Add local Supabase PostgreSQL, Superset, and Brave Search settings to `.env`.
+
+Do not commit `.env` or any real credentials.
+
+5. Download the Olist Brazilian E-Commerce Public Dataset from Kaggle and place the raw CSV files in `data/raw/`.
+
+6. Apply the migrations in `supabase/migrations/` to create the warehouse schema, indexes, analytical views, and external intelligence layer.
+
+## 13. How To Run The Pipeline
+
+Run the ETL scripts in order:
+
+```bash
+python etl\00_test_connection.py
+python etl\01_profile_data.py
+python etl\02_transform_dimensions.py
+python etl\03_load_dimensions.py
+python etl\04_load_facts.py
+python etl\05_validate_load.py
+python etl\06_load_external_intelligence.py
+```
+
+## 14. How To Run Validation And Golden Query Evaluation
+
+Run load validation:
+
+```bash
+python etl\05_validate_load.py
+```
+
+The validation script checks row counts, revenue totals, required foreign keys, nullable relationship fields, delivery metrics, and review metrics. It writes validation evidence to:
+
+```text
+docs/load_validation_report.txt
+```
+
+Run golden query evaluation:
+
+```bash
+python agent_eval\evaluate_agent.py
+```
+
+The evaluator reads `agent_eval/golden_queries.yml` and writes:
+
+```text
+docs/golden_query_evaluation_report.txt
+```
+
+## 15. Demo Workflow
+
+1. A user asks Codex CLI a BI question, such as which product categories generate the most revenue and have delivery or satisfaction risk.
+2. Codex uses the `olist-postgres` MCP server to inspect the approved schema and run read-only PostgreSQL `SELECT` queries.
+3. Codex explains the result using approved business metrics and warehouse views.
+4. If external context is needed, Brave Search MCP intelligence is referenced through the committed external intelligence layer.
+5. If a visual result is needed, Superset MCP is used to inspect or interact with Superset datasets, charts, and dashboards.
+6. Apache Superset presents the result in the relevant dashboard.
+
+## 16. Project Documentation And Evidence
+
+Important documentation and evidence files:
+
+- `docs/architecture.md`
+- `docs/business_metrics.md`
+- `docs/data_dictionary.md`
+- `docs/data_profile_report.txt`
+- `docs/load_validation_report.txt`
+- `docs/golden_query_evaluation_report.txt`
+- `docs/external_intelligence_targets.md`
 - `docs/external_intelligence_search_log.md`
-- `dim_external_intelligence`
+- `docs/final_project_summary.md`
+- `docs/screenshots/`
+- `mcp_server/prompts/system_instructions.md`
 
-Superset-ready views expose the results:
-
-- `vw_product_category_intelligence`
-- `vw_geographic_intelligence`
-- `vw_delivery_intelligence`
-
-### Superset MCP
-
-The Superset MCP server lets Codex CLI interact with Apache Superset dashboards, datasets, and charts through controlled tools. It is used for Superset asset inspection and, when explicitly requested, chart/dashboard operations such as creating a chart and adding it to a dashboard.
-
-Successful Superset MCP test:
-
-- Created chart ID `128`: `Top 5 Product Categories - Revenue and Risk Signals`
-- Dataset: `vw_product_category_performance` / dataset ID `24`
-- Dashboard: `Product & Seller Performance` / dashboard ID `11`
-- Fields: `product_category_name_english`, `total_revenue`, `total_orders`, `late_delivery_rate`, `average_review_score`, `freight_ratio`
-- Configuration: table chart, top 5 rows, ordered by `total_revenue` descending
-
-## Demo Flow
-
-1. A user asks the Codex CLI BI agent a business question, such as which product categories generate the most revenue and carry delivery or satisfaction risk.
-2. The agent uses PostgreSQL MCP to inspect approved warehouse views, generate PostgreSQL-compatible SQL, and fetch read-only data from the warehouse.
-3. When the user asks for a visual result, the agent uses Superset MCP to create a Superset chart from the relevant dataset.
-4. Superset displays the visual result on the target dashboard for review and presentation.
-
-## Security Notes
-
-- `.env` is local only and must not be committed.
-- Database passwords, Supabase credentials, Superset credentials, Brave API keys, and tokens must not be committed.
-- `.env.example` contains placeholders only.
-- MCP SQL access is read-only for agent queries.
-- External intelligence stores source URLs and summaries, not API keys.
-
-## Known Limitations
-
-- The Olist dataset is historical, so it does not represent live marketplace activity.
-- Some external intelligence items rely on broad Brazil e-commerce sources when category-specific sources were weak.
-- Brave Search intelligence is curated from search results and should be periodically refreshed.
-- Superset dashboards depend on predefined analytical views.
-- The BI agent is intentionally constrained to read-only SQL for safety.
-- External intelligence is loaded as a curated batch, not as a real-time streaming feed.
+These files document the warehouse design, BI metrics, agent behavior, validation results, golden query evaluation, external intelligence evidence, and Superset dashboard evidence for the university final project submission.
